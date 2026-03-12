@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const DATA_DIR = path.resolve(process.cwd(), 'scripts', 'data');
-const REVIEW_JSON_PATH = path.resolve(process.cwd(), 'scripts', 'batch_07_review.json');
+const REVIEW_JSON_PATH = path.resolve(process.cwd(), 'scripts', 'batch_02_review.json');
 
 const config = {
   Location: { file: 'locations.ts', varName: 'locationData', prefix: 'loc_' },

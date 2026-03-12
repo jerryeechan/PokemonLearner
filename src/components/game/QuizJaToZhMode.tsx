@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { Volume2 } from 'lucide-react';
+import vocabData from '../../data/pokemon_vocab.json';
+
+const getJaInfo = (zh_tw: string): { japanese: string; hiragana: string; kanji: string | null } | null => {
+  const found = (vocabData as any[]).find((v) => v.zh_tw === zh_tw);
+  return found ? { japanese: found.japanese, hiragana: found.hiragana, kanji: found.kanji ?? null } : null;
+};
 
 interface QuizJaToZhProps {
   vocab: {
@@ -17,7 +23,6 @@ export function QuizJaToZhMode({ vocab, options, onNext }: QuizJaToZhProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  // Reset state when vocab changes
   useEffect(() => {
     setSelected(null);
     setIsAnswered(false);
@@ -34,17 +39,9 @@ export function QuizJaToZhMode({ vocab, options, onNext }: QuizJaToZhProps) {
   const handleSelect = (opt: string) => {
     if (isAnswered) return;
     setSelected(opt);
-  };
-
-  const handleSubmit = () => {
-    if (!selected) return;
-    if (isAnswered) {
-      onNext(selected === correctAnswer);
-    } else {
-      setIsAnswered(true);
-      if (selected === correctAnswer) {
-        playAudio();
-      }
+    setIsAnswered(true);
+    if (opt === correctAnswer) {
+      playAudio();
     }
   };
 
@@ -53,7 +50,7 @@ export function QuizJaToZhMode({ vocab, options, onNext }: QuizJaToZhProps) {
   return (
     <div className="w-full flex flex-col items-center">
       <h2 className="text-xl font-bold text-gray-700 mb-6 w-full text-left">選出正確的中文</h2>
-      
+
       {/* Show Japanese word as the question */}
       <div className="card w-full mb-8 flex flex-row items-center justify-between p-6">
         <div>
@@ -82,8 +79,6 @@ export function QuizJaToZhMode({ vocab, options, onNext }: QuizJaToZhProps) {
             } else {
               stateClass = "border-gray-200 bg-white text-gray-400 opacity-50";
             }
-          } else if (opt === selected) {
-            stateClass = "border-blue-500 bg-blue-50 text-blue-700 ring-2 ring-blue-200";
           }
 
           return (
@@ -92,32 +87,41 @@ export function QuizJaToZhMode({ vocab, options, onNext }: QuizJaToZhProps) {
               onClick={() => handleSelect(opt)}
               disabled={isAnswered}
               className={clsx(
-                "w-full text-left font-bold text-xl p-4 rounded-2xl border-2 transition-all",
-                stateClass,
-                !isAnswered && opt === selected ? "shadow-sm" : ""
+                "w-full text-left font-bold text-xl p-4 rounded-2xl border-2 transition-all flex items-center justify-between",
+                stateClass
               )}
             >
-              {opt}
+              <span className="flex flex-col">
+                <span>{opt}</span>
+                {isAnswered && (() => {
+                  const info = getJaInfo(opt);
+                  if (!info) return null;
+                  const sub = [info.hiragana, info.kanji].filter(Boolean).join('  /  ');
+                  return <span className="text-sm font-normal mt-0.5 opacity-70">{sub}</span>;
+                })()}
+              </span>
+              {isAnswered && opt === correctAnswer && <span className="text-green-500 text-2xl font-black flex-shrink-0 ml-2">✓</span>}
+              {isAnswered && opt === selected && opt !== correctAnswer && <span className="text-red-500 text-2xl font-black flex-shrink-0 ml-2">✗</span>}
             </button>
           );
         })}
       </div>
 
-      <div className="w-full">
-        <button
-          disabled={!selected}
-          onClick={handleSubmit}
-          className={clsx(
-            "w-full py-4 text-xl font-bold rounded-2xl shadow-[0_6px_0_0_rgba(0,0,0,0.1)] active:translate-y-2 active:shadow-none transition-all text-white",
-            !selected ? 'bg-gray-300 shadow-none cursor-not-allowed opacity-50 border-0' :
-            !isAnswered ? 'bg-green-500 shadow-[0_4px_0_0_rgba(34,197,94,1)]' :
-            isCorrect ? 'bg-green-500 shadow-[0_4px_0_0_rgba(34,197,94,1)]' :
-            'bg-red-500 shadow-[0_4px_0_0_rgba(239,68,68,1)]'
-          )}
-        >
-          {!isAnswered ? '檢查' : '繼續'}
-        </button>
-      </div>
+      {isAnswered && (
+        <div className="w-full">
+          <button
+            onClick={() => onNext(isCorrect)}
+            className={clsx(
+              "w-full py-4 text-xl font-bold rounded-2xl active:translate-y-1 transition-all text-white",
+              isCorrect
+                ? 'bg-green-500 shadow-[0_4px_0_0_rgba(34,197,94,1)]'
+                : 'bg-blue-500 shadow-[0_4px_0_0_rgba(29,78,216,1)]'
+            )}
+          >
+            繼續
+          </button>
+        </div>
+      )}
     </div>
   );
 }

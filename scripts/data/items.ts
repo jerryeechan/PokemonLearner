@@ -27,4 +27,8 @@ export const itemData = [
   { id: "item_025", batch: 6, category: "Item", japanese: "きんのたま", kanji: "金の玉", hiragana: "きんのたま", katakana: "きんのたま", romaji: "kin no tama", zh_tw: "金珠", difficulty: 2, frequency: 3, explanation: "純金製成的閃亮珠子。可以在商店賣出高價（5000元）。", etymology: "「金 (きん)」黃金 +「の」的 +「玉 (たま)」珠子。", example_sentence: "どうた！ おじさんの きんのたま だからね！", example_sentence_zh: "拿去吧！這可是大叔的金珠喔！" },
 
   { id: "item_027", batch: 7, category: "Item", japanese: "ふねのチケット", kanji: "船のチケット", hiragana: "ふねのちけっと", katakana: "ふねのチケット", romaji: "fune no chiketto", zh_tw: "船票", difficulty: 1, frequency: 3, explanation: "搭乘聖安妮號的船票。作為幫助他的謝禮，正輝會將這張票送給玩家。", etymology: "「船 (ふね)」船 +「の (の)」的 +「チケット (Ticket)」票。", example_sentence: "ふねのチケットを もらった！", example_sentence_zh: "拿到了船票！" },
+
+  { id: "item_028", batch: 2, category: "Item", japanese: "おかね", kanji: "お金", hiragana: "おかね", romaji: "okane", zh_tw: "錢", difficulty: 1, frequency: 5, explanation: "遊戲中的貨幣（円/¥），用來購買道具。對戰勝利後可從對手獲得金錢。", etymology: "「お (お)」尊稱前綴 +「金 (かね)」金錢。", example_sentence: "かつと おかねが もらえる！", example_sentence_zh: "贏了就能獲得錢！" },
+  { id: "item_029", batch: 2, category: "Item", japanese: "かう", kanji: "買う", hiragana: "かう", romaji: "kau", zh_tw: "購買", difficulty: 1, frequency: 5, explanation: "在商店購物的基本動詞，進入寶可夢商店後常看到「かう」和「うる」的選項。", etymology: "「買う (かう)」購買。", example_sentence: "ポケモンマートで どうぐを かおう！", example_sentence_zh: "在寶可夢商店買道具吧！" },
+  { id: "item_030", batch: 2, category: "Item", japanese: "うる", kanji: "売る", hiragana: "うる", romaji: "uru", zh_tw: "售出/賣", difficulty: 1, frequency: 4, explanation: "在商店賣出道具換取金錢，與「かう（買う）」相對。", etymology: "「売る (うる)」賣出。", example_sentence: "いらない どうぐを うって おかねに しよう", example_sentence_zh: "把不需要的道具賣掉換成錢吧。" },
 ];
