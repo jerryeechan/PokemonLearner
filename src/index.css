@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Nunito:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-round bg-pokemon-bg text-gray-800 antialiased;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded-2xl shadow-[0_4px_0_0_rgba(34,197,94,1)] active:shadow-none active:translate-y-1 transition-all;
+  }
+  .btn-secondary {
+    @apply bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-2xl shadow-[0_4px_0_0_rgba(59,130,246,1)] active:shadow-none active:translate-y-1 transition-all;
+  }
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-6 rounded-2xl shadow-[0_4px_0_0_rgba(239,68,68,1)] active:shadow-none active:translate-y-1 transition-all;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border-2 border-gray-200 p-4;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
