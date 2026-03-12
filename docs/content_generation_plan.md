@@ -15,14 +15,20 @@
 
 ### 階段二：單字與對話擷取 (Terminology Extraction) & 階段三：學習內容生成 (Content Generation)
 由 Antigravity (AI 助手) 讀取文本，並一次性完成單字擷取與格式化：
-1. 找出重點單字（地點、角色、寶可夢、招式、道具、UI系統）。
+1. 找出重點單字（地點、角色、寶可夢、招式、道具、UI系統）。每個單元需要至少40個單字。
 2. 生成屬性（`japanese`, `kanji`, `romaji`, `zh_tw`, `difficulty`, `frequency`, `explanation`, `etymology`, `example_sentence`）。
 3. Antigravity 將會產生一份暫存的 JSON 或是直接提出預覽供開發者檢查。
 
 ### 階段四：資料整併與更新 (Data Merge & Sync)
-* **寫入資料庫**：Antigravity 或開發者將確認無誤的 JSON 資料寫入對應的 `scripts/data/` 檔案，並自動賦予新流水號 ID。
-* **建立新章節**：負責人在 `src/data/chapters.ts` 建立新的章節，將剛剛學到的單字 ID (如 `loc_019`, `dlg_021`) 納入。
-
+* **執行整併腳本**：Antigravity 使用工具或腳本 (如 `scripts/_merge_batch.ts`) 將確認無誤的 JSON 內容，附加寫入至對應的 `scripts/data/*.ts` 原始檔案，並自動賦予不重複的流水號 ID。
+    *   **詳細步驟**：
+        1.  Antigravity 讀取 `scripts/generator/temp_review.json` (經人工審核後的 JSON)。
+        2.  根據 JSON 內容，判斷是新增單字還是更新現有單字。
+        3.  將新增或更新的單字物件，附加寫入到 `scripts/data/vocab_batch_XX.ts` (或對應的分類檔案，如 `locations.ts`, `pokemons.ts`)。
+        4.  自動為每個新單字生成一個不重複的 ID。
+        5.  確保寫入的 TypeScript 檔案格式正確，並導出新的資料。
+* **執行編譯腳本**：必須執行 `npx tsx scripts/generate_vocab.ts`，這會把所有分散在 `scripts/data/` 的 ts 檔案重新打包成前端需要的 `src/data/pokemon_vocab.json`。
+* **建立新章節**：負責人在 `src/data/chapters.ts` 建立或更新對應的章節，將剛剛學到的單字 ID 納入。
 ---
 
 ## 3. 分批執行計畫 (Batch Strategy)
@@ -46,7 +52,7 @@
 
 **【水之道館與枯葉市】**
 * **Batch 06**: 華藍市 (Cerulean City) & 華藍道館 (已完成擴充版)
-* **Batch 07**: 24、25號道路 (金珠橋) & 正輝的家 (Bill's House)
+* **Batch 07**: 24、25號道路 (金珠橋) & 正輝的家 (Bill's House) (已完成擴充版)
 * **Batch 08**: 5號、6號道路 & 枯葉市 (Vermilion City)
 * **Batch 09**: 聖安妮號 (S.S. Anne) & 枯葉道館
 

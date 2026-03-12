@@ -14,6 +14,7 @@ const __dirname = path.dirname(__filename);
 
 interface VocabEntry {
   id: string;
+  batch?: number;
   category: string;
   japanese: string;
   kanji: string | null;

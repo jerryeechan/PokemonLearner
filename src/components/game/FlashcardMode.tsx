@@ -16,12 +16,27 @@ interface FlashcardProps {
 
 export function FlashcardMode({ vocab, onNext }: FlashcardProps) {
   const [flipped, setFlipped] = useState(false);
+  const [hasClicked, setHasClicked] = useState(false);
 
-  const playAudio = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const playAudio = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     const utterance = new SpeechSynthesisUtterance(vocab.hiragana);
     utterance.lang = 'ja-JP';
     window.speechSynthesis.speak(utterance);
+  };
+
+  const handleCardClick = () => {
+    // If user is selecting text, don't flip
+    if (window.getSelection()?.toString().length) {
+      return;
+    }
+    
+    if (!hasClicked) {
+      playAudio();
+    }
+    
+    setFlipped(!flipped);
+    setHasClicked(true);
   };
 
   return (
@@ -30,7 +45,7 @@ export function FlashcardMode({ vocab, onNext }: FlashcardProps) {
       
       <div 
         className="relative w-full aspect-[4/5] perspective-1000 cursor-pointer"
-        onClick={() => setFlipped(!flipped)}
+        onClick={handleCardClick}
       >
         <div className={`w-full h-full transition-transform duration-500 transform-style-3d ${flipped ? 'rotate-y-180' : ''}`}>
           
@@ -73,9 +88,9 @@ export function FlashcardMode({ vocab, onNext }: FlashcardProps) {
 
       <div className="w-full mt-8">
         <button 
-          disabled={!flipped}
+          disabled={!hasClicked}
           onClick={() => onNext(true)}
-          className={`btn-primary w-full py-4 text-xl shadow-[0_6px_0_0_rgba(34,197,94,1)] active:translate-y-2 ${!flipped ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
+          className={`btn-primary w-full py-4 text-xl shadow-[0_6px_0_0_rgba(34,197,94,1)] active:translate-y-2 ${!hasClicked ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
         >
           我學會了！
         </button>

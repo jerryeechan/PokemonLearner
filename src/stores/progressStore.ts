@@ -6,6 +6,7 @@ export interface VocabProgress {
   level: number; // 0 = not started, 1-5 = SRS levels
   nextReviewTime: number; // timestamp
   consecutiveCorrect: number;
+  hasSeenFlashcard?: boolean;
 }
 
 interface ProgressState {
@@ -23,6 +24,7 @@ interface ProgressState {
   refillHearts: () => void;
   updateStreak: () => void;
   updateVocabReview: (id: string, correct: boolean) => void;
+  markFlashcardSeen: (id: string) => void;
   unlockChapter: (chapterId: number) => void;
 }
 
@@ -74,23 +76,22 @@ export const useProgressStore = create<ProgressState>()(
 
       updateVocabReview: (id, correct) => set((state) => {
         const vocab = state.vocabProgress[id] || { 
-          id, level: 0, nextReviewTime: 0, consecutiveCorrect: 0 
+          id, level: 0, nextReviewTime: 0, consecutiveCorrect: 0, hasSeenFlashcard: false
         };
 
         let newLevel = vocab.level;
         let newConsecutive = vocab.consecutiveCorrect;
+        let newHasSeenFlashcard = vocab.hasSeenFlashcard !== undefined ? vocab.hasSeenFlashcard : true;
 
         if (correct) {
-          newConsecutive += 1;
-          // Level up after every 2 consecutive correct answers
-          if (newConsecutive >= 2) {
-            newLevel = Math.min(5, newLevel + 1);
-            newConsecutive = 0;
-          }
+          // Level up immediately on correct answer
+          newLevel = Math.min(5, newLevel + 1);
+          newConsecutive = 0;
         } else {
           // Bad answer drops level heavily
           newLevel = Math.max(0, newLevel - 1);
           newConsecutive = 0;
+          newHasSeenFlashcard = false; // Reset flashcard flag so they see it again
         }
 
         // Calculate next review time based on level (SRS intervals)
@@ -111,8 +112,21 @@ export const useProgressStore = create<ProgressState>()(
               ...vocab,
               level: newLevel,
               consecutiveCorrect: newConsecutive,
-              nextReviewTime
+              nextReviewTime,
+              hasSeenFlashcard: newHasSeenFlashcard
             }
+          }
+        };
+      }),
+
+      markFlashcardSeen: (id) => set((state) => {
+        const vocab = state.vocabProgress[id] || { 
+          id, level: 0, nextReviewTime: 0, consecutiveCorrect: 0, hasSeenFlashcard: false
+        };
+        return {
+          vocabProgress: {
+            ...state.vocabProgress,
+            [id]: { ...vocab, hasSeenFlashcard: true }
           }
         };
       }),
