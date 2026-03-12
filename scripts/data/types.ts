@@ -16,4 +16,6 @@ export const typeData = [
   { id:"type_015",category:"Type",japanese:"ドラゴン",kanji:null,hiragana:"どらごん",katakana:"ドラゴン",romaji:"doragon",zh_tw:"龍",difficulty:2,frequency:2,explanation:"龍屬性。剋制龍，被冰、龍、妖精剋制。非常稀有的屬性。",etymology:"來自英文「Dragon」(龍)。",example_sentence:"ドラゴンタイプの ポケモンは とても つよい！",example_sentence_zh:"龍屬性的寶可夢非常強！"},
   { id:"type_016",category:"Type",japanese:"はがね",kanji:"鋼",hiragana:"はがね",romaji:"hagane",zh_tw:"鋼",difficulty:2,frequency:2,explanation:"鋼屬性。第二世代追加。防禦力高，抵抗很多屬性。",etymology:"「鋼 (はがね)」鋼鐵。",example_sentence:"はがねタイプは ぼうぎょが たかい！",example_sentence_zh:"鋼屬性的防禦很高！"},
   { id:"type_017",category:"Type",japanese:"あく",kanji:"悪",hiragana:"あく",romaji:"aku",zh_tw:"惡",difficulty:2,frequency:2,explanation:"惡屬性。第二世代追加。剋制超能力、鬼，被格鬥、蟲、妖精剋制。",etymology:"「悪 (あく)」惡、壞。",example_sentence:"あくタイプは エスパータイプに つよい！",example_sentence_zh:"惡屬性對超能力屬性很強！"},
+
+  { id: "type_018", category: "Type", japanese: "みずタイプ", kanji: "水タイプ", hiragana: "みずたいぷ", katakana: "みずタイプ", romaji: "mizu taipu", zh_tw: "水屬性", difficulty: 1, frequency: 5, explanation: "寶可夢的屬性之一，克制火、地面和岩石屬性，被草和電屬性克制。", etymology: "「水 (みず)」水 +「タイプ」Type (屬性)。", example_sentence: "みずタイプの ポケモンは ほのおに つよい！", example_sentence_zh: "水屬性的寶可夢對火屬性很強！" },
 ];

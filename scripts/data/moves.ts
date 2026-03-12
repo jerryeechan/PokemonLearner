@@ -37,4 +37,6 @@ export const moveData = [
   { id:"move_036",category:"Move",japanese:"テレポート",kanji:null,hiragana:"てれぽーと",katakana:"テレポート",romaji:"terepooto",zh_tw:"瞬間移動",difficulty:2,frequency:3,explanation:"超能力屬性變化招式。瞬間移動回到上一個寶可夢中心。野生戰鬥中可用來逃跑。",etymology:"來自英文「Teleport」(瞬間移動)。",example_sentence:"ケーシィは テレポートで にげていった！",example_sentence_zh:"凱西用瞬間移動逃走了！"},
   { id:"move_037",category:"Move",japanese:"まもる",kanji:"守る",hiragana:"まもる",romaji:"mamoru",zh_tw:"守住",difficulty:2,frequency:3,explanation:"一般屬性變化招式。該回合完全防禦對手的攻擊。連續使用成功率會降低。",etymology:"「守る (まもる)」守護、防禦。",example_sentence:"まもるで こうげきを ふせいだ！",example_sentence_zh:"用守住擋住了攻擊！"},
   { id:"move_038",category:"Move",japanese:"ねむる",kanji:"眠る",hiragana:"ねむる",romaji:"nemuru",zh_tw:"睡覺",difficulty:2,frequency:3,explanation:"超能力屬性變化招式。睡眠兩回合，完全回復HP和所有異常狀態。",etymology:"「眠る (ねむる)」睡覺。",example_sentence:"カビゴンは ねむるで たいりょくを かいふくした！",example_sentence_zh:"卡比獸用睡覺回復了體力！"},
+
+  { id: "move_039", category: "Move", japanese: "みずのはどう", kanji: "水の波動", hiragana: "みずのはどう", katakana: "みずのはどう", romaji: "mizu no hadou", zh_tw: "水之波動", difficulty: 3, frequency: 3, explanation: "水屬性特殊招式，用水的震動攻擊對手，有時會使對手混亂（在火紅葉綠版中為小霞贈送的招式學習器03）。", etymology: "「水 (みず)」水 +「の」的 +「波動 (はどう)」波動。", example_sentence: "スターミーの みずのはどう！", example_sentence_zh: "寶石海星的水之波動！" },
 ];

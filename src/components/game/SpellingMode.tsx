@@ -13,7 +13,7 @@ interface SpellingProps {
 
 export function SpellingMode({ vocab, onNext }: SpellingProps) {
   // Use the raw japanese string (removing spaces if any) as the target word
-  const [targetWord] = useState((vocab.japanese || vocab.hiragana).replace(/\s+/g, ''));
+  const targetWord = (vocab.japanese || vocab.hiragana).replace(/\s+/g, '');
   const [jumbledChars, setJumbledChars] = useState<string[]>([]);
   const [inputChars, setInputChars] = useState<string[]>([]);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -78,6 +78,17 @@ export function SpellingMode({ vocab, onNext }: SpellingProps) {
     setJumbledChars([...jumbledChars, lastChar]);
   };
 
+  const handleRemoveSpecificChar = (index: number) => {
+    if (isAnswered) return;
+    
+    const charToRemove = inputChars[index];
+    const newInput = [...inputChars];
+    newInput.splice(index, 1);
+    setInputChars(newInput);
+    
+    setJumbledChars([...jumbledChars, charToRemove]);
+  };
+
   const handleSubmit = () => {
     if (inputChars.length === 0) return;
     if (isAnswered) {
@@ -103,9 +114,13 @@ export function SpellingMode({ vocab, onNext }: SpellingProps) {
       {/* Answer Area */}
       <div className="w-full flex flex-wrap gap-2 justify-center min-h-[60px] p-4 bg-gray-50 rounded-2xl border-2 border-gray-200 border-dashed mb-6 relative">
         {inputChars.map((char, i) => (
-           <div key={i} className="w-12 h-12 flex items-center justify-center bg-white border-2 border-gray-300 rounded-xl text-2xl font-bold shadow-sm">
+           <button 
+             key={i} 
+             onClick={() => handleRemoveSpecificChar(i)}
+             disabled={isAnswered}
+             className="w-12 h-12 flex items-center justify-center bg-white border-2 border-gray-300 rounded-xl text-2xl font-bold shadow-sm hover:border-red-300 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-100 disabled:hover:bg-white disabled:hover:border-gray-300 disabled:hover:text-black">
              {char}
-           </div>
+           </button>
         ))}
         {inputChars.length > 0 && !isAnswered && (
              <button onClick={handleRemoveChar} className="absolute -right-4 top-4 p-2 text-gray-400 hover:text-red-500">

@@ -8,17 +8,17 @@ interface MatchProps {
 }
 
 export function MatchMode({ vocabIds, onNext }: MatchProps) {
-  const [items, setItems] = useState<{ id: string, text: string, type: 'ja' | 'zh', vocabId: string }[]>([]);
+  const [items, setItems] = useState<{ id: string, text: string, type: 'ja' | 'zh', vocabId: string, hiragana?: string }[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [matchedIds, setMatchedIds] = useState<string[]>([]); // ids of vocab that are matched
 
   useEffect(() => {
-    const newItems: { id: string, text: string, type: 'ja' | 'zh', vocabId: string }[] = [];
+    const newItems: { id: string, text: string, type: 'ja' | 'zh', vocabId: string, hiragana?: string }[] = [];
     
     vocabIds.forEach((vid, index) => {
       const vocab = vocabData.find((v: any) => v.id === vid);
       if (vocab) {
-        newItems.push({ id: `ja_${index}`, text: (vocab as any).japanese || vocab.hiragana, type: 'ja', vocabId: vid });
+        newItems.push({ id: `ja_${index}`, text: (vocab as any).japanese || vocab.hiragana, type: 'ja', vocabId: vid, hiragana: vocab.hiragana });
         newItems.push({ id: `zh_${index}`, text: vocab.zh_tw, type: 'zh', vocabId: vid });
       }
     });
@@ -32,6 +32,15 @@ export function MatchMode({ vocabIds, onNext }: MatchProps) {
   const handleSelect = (itemId: string, vocabId: string) => {
     if (matchedIds.includes(vocabId)) return; // Already matched
 
+    const clickedItem = items.find(i => i.id === itemId);
+    
+    if (clickedItem && clickedItem.type === 'ja' && clickedItem.hiragana) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(clickedItem.hiragana);
+      utterance.lang = 'ja-JP';
+      window.speechSynthesis.speak(utterance);
+    }
+
     if (!selectedId) {
       setSelectedId(itemId);
       return;
@@ -44,7 +53,6 @@ export function MatchMode({ vocabIds, onNext }: MatchProps) {
     }
 
     const selectedItem = items.find(i => i.id === selectedId);
-    const clickedItem = items.find(i => i.id === itemId);
 
     if (selectedItem && clickedItem && selectedItem.vocabId === clickedItem.vocabId && selectedItem.type !== clickedItem.type) {
       // Match found

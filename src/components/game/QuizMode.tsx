@@ -33,6 +33,7 @@ export function QuizMode({ vocab, options, onNext }: QuizProps) {
 
   const handleSelect = (opt: string) => {
     if (isAnswered) return;
+    playAudio(opt);
     setSelected(opt);
   };
 
