@@ -123,23 +123,59 @@ export const chapters: Chapter[] = [
   {
     id: 3,
     title: '常磐森林的考驗',
-    desc: '遇見蟲系寶可夢與異常狀態',
+    desc: '穿越蟲蟲天堂！學習自然詞彙、蟲系寶可夢與異常狀態',
     vocabIds: [
+      // 地點 (Locations)
       'loc_011', // 常磐森林
+      'loc_034', // 2號道路
+      // 訓練家類型
       'dlg_020', // 捕蟲少年
+      'dlg_018', // 千金小姐 (Lass)
+      // 寶可夢 (Pokemon)
       'pokemon_010', // 綠毛蟲
+      'pokemon_011', // 鐵殼蛹
+      'pokemon_012', // 巴大蝶
+      'pokemon_013', // 角蟲
+      'pokemon_014', // 鐵甲蛹
+      'pokemon_015', // 大針蜂
       'pokemon_025', // 皮卡丘
+      // 招式 (Moves)
       'move_031', // 吐絲
       'move_006', // 電擊
+      'move_028', // 飛葉快刀
+      'move_030', // 毒粉
+      'move_001', // 撞擊
+      'move_002', // 叫聲
+      // 屬性 (Types)
       'type_012', // 蟲
       'type_005', // 電
+      // 異常狀態 (Status)
       'status_001', // 中毒
       'status_002', // 麻痺
+      'status_003', // 睡眠
+      // 道具 (Items)
       'item_018', // 解毒藥
       'item_019', // 解麻藥
+      'item_031', // 驅蟲噴霧
+      // 對戰訊息 (Battle)
       'battle_001', // 效果絕佳
+      'battle_002', // 效果不好
       'battle_015', // 似乎沒有效果
       'battle_020', // 獲得了經驗值！
+      // 自然環境詞彙 (Nature Vocabulary)
+      'dlg_114', // 森林
+      'dlg_115', // 樹木
+      'dlg_116', // 葉子
+      'dlg_117', // 蟲/昆蟲
+      'dlg_118', // 暗的
+      // 動詞 (Verbs)
+      'dlg_119', // 走路
+      'dlg_120', // 找到/發現
+      'dlg_121', // 通過/穿越
+      'dlg_122', // 出去/出現
+      // 方向詞彙 (Directions)
+      'dlg_123', // 前方
+      'dlg_124', // 東方
     ],
   },
   {

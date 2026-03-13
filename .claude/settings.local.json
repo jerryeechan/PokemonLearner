@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsx:*)",
+      "Bash(node -e \"const c = require\\('./src/data/chapters.ts'\\); console.log\\('done'\\)\" 2>&1 | head -5; npx tsx -e \"import { chapters } from './src/data/chapters.ts'; const ch3 = chapters.find\\(c => c.id === 3\\); console.log\\('Chapter 3:', ch3?.title\\); console.log\\('Vocab count:', ch3?.vocabIds.length\\);\" 2>&1)"
+    ]
+  }
+}
