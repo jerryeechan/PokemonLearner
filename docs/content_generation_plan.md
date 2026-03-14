@@ -91,7 +91,9 @@
 ```text
 scripts/
   ├── raw_texts/            # 存放每次要處理的參考文本 (如 batch_06_cerulean_city.txt)
-  └── data/                 # 現有的字庫 (dialogue.ts, locations.ts 等等)
+  ├── data/                 # 現有的字庫 (dialogue.ts, locations.ts 等等)
+  ├── generate_vocab.ts     # 將 scripts/data/*.ts 打包成 src/data/pokemon_vocab.json
+  └── check_vocab_ids.ts    # 完整性檢查：確認 chapters.ts 引用的所有 ID 都存在於 vocab.json
 ```
 
 ## 5. 人工介入點 (Human in the Loop)
@@ -101,6 +103,31 @@ scripts/
 2. 確認字源分析 (Etymology) 是否通順。
 3. 刪除太冷門或重複的單字。
 確認無誤後，再執行 `merge.ts` 將資料寫入主程式碼中。
+
+---
+
+## 6. 完整性檢查 (Integrity Check)
+
+每次完成一個 Batch 後，**必須**執行以下步驟確保資料一致性：
+
+### 步驟一：重新打包 vocab.json
+```bash
+npx tsx scripts/generate_vocab.ts
+```
+
+### 步驟二：執行 ID 完整性檢查
+```bash
+npx tsx scripts/check_vocab_ids.ts
+```
+
+**檢查項目**：
+1. `chapters.ts` 中引用的所有 vocabId 是否都存在於 `pokemon_vocab.json`
+2. 章節內是否有重複的 vocabId
+3. 跨章節共用的 ID 清單（資訊用途，非錯誤）
+
+**期望輸出**：所有章節顯示 ✅，且「全域缺少 0 個」。
+
+> **注意**：若出現 ❌ 缺少 ID，代表 `chapters.ts` 引用了尚未生成的詞條。需補齊詞條後重跑 `generate_vocab.ts`，再確認通過。
 
 ---
 
@@ -128,5 +155,5 @@ scripts/
 
 ### 全域統計
 
-- **vocabulary JSON 總詞彙數**：375 個
+- **vocabulary JSON 總詞彙數**：377 個
 - **已完成 Batch 數**：1, 2, 3, 4, 6, 7

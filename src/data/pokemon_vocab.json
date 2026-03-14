@@ -3181,6 +3181,38 @@
     "example_sentence_zh": "身上沒有寶可夢！"
   },
   {
+    "id": "ui_006",
+    "batch": 1,
+    "category": "UI",
+    "japanese": "バッグ",
+    "kanji": null,
+    "hiragana": "バッグ",
+    "romaji": "baggu",
+    "zh_tw": "背包",
+    "difficulty": 1,
+    "frequency": 5,
+    "explanation": "用來收納道具與重要物品的包包。在冒險中可隨時打開確認。",
+    "etymology": "源自英語「bag」（袋子）的外來語。",
+    "example_sentence": "バッグから きずぐすりを とりだした。",
+    "example_sentence_zh": "從背包裡取出了傷藥。"
+  },
+  {
+    "id": "ui_007",
+    "batch": 1,
+    "category": "UI",
+    "japanese": "レポートをかく",
+    "kanji": "レポートを書く",
+    "hiragana": "レポートをかく",
+    "romaji": "repōto wo kaku",
+    "zh_tw": "報告（存檔）",
+    "difficulty": 2,
+    "frequency": 5,
+    "explanation": "遊戲的存檔功能。選擇此項目可保存冒險進度，日後繼續遊玩。",
+    "etymology": "「レポート」源自英語「report」。遊戲中以「寫報告日誌」的概念呈現存檔動作。",
+    "example_sentence": "ねる まえに レポートを かいておこう。",
+    "example_sentence_zh": "睡覺前先存一下檔吧。"
+  },
+  {
     "id": "ui_008",
     "category": "UI",
     "japanese": "せってい",
