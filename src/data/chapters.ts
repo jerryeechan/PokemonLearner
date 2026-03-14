@@ -33,7 +33,6 @@ export const chapters: Chapter[] = [
       'dlg_038', // 獲得
       'dlg_039', // 寶可夢圖鑑
       'dlg_008', // 冒險
-      'dlg_008', // 出門
       'battle_008', // 戰鬥
       'battle_009', // 逃跑
       'ui_006', // 包包
@@ -63,12 +62,10 @@ export const chapters: Chapter[] = [
       'pokemon_016', // 波波
       // 道具
       'item_001', // 傷藥
-      'item_006', // 精靈球
       'item_028', // 錢
       'item_029', // 購買
       'item_030', // 售出
       // NPC 與對話
-      'dlg_002', // 草叢
       'dlg_009', // 寶可夢訓練家
       'dlg_019', // 短褲少年
       'dlg_013', // 四目相交！來對戰吧！
@@ -109,15 +106,11 @@ export const chapters: Chapter[] = [
       'dlg_109', // 大家
       'dlg_110', // 元氣/精神
       // Battle
-      'battle_008', // 戰鬥
-      'battle_009', // 逃跑
       'battle_010', // 攻擊
       'battle_019', // 捕捉到了○○！
       'dlg_111', // 體力/HP
       'dlg_112', // 攻擊力
       'dlg_113', // 技能/招式
-      // UI
-      'ui_006', // 背包
     ],
   },
   {
@@ -282,7 +275,6 @@ export const chapters: Chapter[] = [
     desc: '挑戰24、25號道路並幫助正輝',
     vocabIds: [
       'loc_024', // 24號道路
-      'loc_021', // 金珠橋
       'loc_026', // 25號道路
       'loc_027', // 海角小屋
       'loc_005', // 枯葉市
@@ -298,13 +290,11 @@ export const chapters: Chapter[] = [
       'dlg_055', // 分離
       'dlg_056', // 船
       'dlg_057', // 謝謝
-      'dlg_028', // 橋
       'dlg_059', // 渡過
       'dlg_060', // 真的
       'dlg_061', // 同伴
       'dlg_062', // 拒絕
       'dlg_063', // 實力
-      'dlg_036', // 電腦
       'dlg_065', // 失敗
       'dlg_066', // 恢復 / 返回
       'dlg_067', // 幫助
@@ -314,10 +304,8 @@ export const chapters: Chapter[] = [
       'dlg_071', // 請求
       'dlg_072', // 等待
       'dlg_073', // 給予
-      'dlg_038', // 獲得
       'dlg_075', // 最後
       'dlg_076', // 強壯的
-      'item_025', // 金珠
       'item_027', // 船票
       'pokemon_063', // 凱西
       'pokemon_155', // 喇叭芽

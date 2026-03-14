@@ -117,13 +117,18 @@ npx tsx scripts/generate_vocab.ts
 
 ### 步驟二：執行 ID 完整性檢查
 ```bash
-npx tsx scripts/check_vocab_ids.ts
+npx tsx scripts/check_vocab_ids.ts        # 僅檢查
+npx tsx scripts/check_vocab_ids.ts --fix  # 檢查並自動修正重複
 ```
 
 **檢查項目**：
 1. `chapters.ts` 中引用的所有 vocabId 是否都存在於 `pokemon_vocab.json`
-2. 章節內是否有重複的 vocabId
-3. 跨章節共用的 ID 清單（資訊用途，非錯誤）
+2. 章節內是否有重複的 vocabId（保留第一次出現，移除後續）
+3. 跨章節重複的 vocabId（保留較早章節，從較晚章節移除）
+
+**修正規則**（`--fix`）：
+- 章節內重複 → 保留第一行，移除第二行以後
+- 跨章節重複 → 保留較早章節中的，從較晚章節刪除
 
 **期望輸出**：所有章節顯示 ✅，且「全域缺少 0 個」。
 
