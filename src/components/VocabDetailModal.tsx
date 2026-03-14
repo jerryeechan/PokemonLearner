@@ -9,6 +9,7 @@ interface VocabItem {
   etymology?: string | null;
   example_sentence?: string | null;
   example_sentence_zh?: string | null;
+  example_sentence_explanation?: string | null;
   category: string;
 }
 
@@ -100,6 +101,11 @@ export function VocabDetailModal({ vocab, level, onClose }: Props) {
                 {vocab.example_sentence_zh && (
                   <p className="text-xs italic opacity-70 mt-2 leading-relaxed">
                     <span className="font-black not-italic">🇹🇼 翻譯：</span>{vocab.example_sentence_zh}
+                  </p>
+                )}
+                {vocab.example_sentence_explanation && (
+                  <p className="text-xs opacity-80 mt-2 leading-relaxed">
+                    <span className="font-black">📘 解析：</span>{vocab.example_sentence_explanation}
                   </p>
                 )}
               </div>

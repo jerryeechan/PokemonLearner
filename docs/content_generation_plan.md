@@ -16,7 +16,8 @@
 ### 階段二：單字與對話擷取 (Terminology Extraction) & 階段三：學習內容生成 (Content Generation)
 由 Antigravity (AI 助手) 讀取文本，並一次性完成單字擷取與格式化：
 1. 找出重點單字（地點、角色、寶可夢、招式、道具、UI系統）。每個單元需要至少40個單字。
-2. 生成屬性（`japanese`, `kanji`, `romaji`, `zh_tw`, `difficulty`, `frequency`, `explanation`, `etymology`, `example_sentence`）。
+2. 生成屬性（`japanese`, `kanji`, `romaji`, `zh_tw`, `difficulty`, `frequency`, `explanation`, `etymology`, `example_sentence`, `example_sentence_zh`, `example_sentence_explanation`）。
+   - `example_sentence_explanation`：針對例句中**較難的單詞或文法**進行逐項說明，格式為「単語（讀音）= 中文意思」，以「・」分隔，幫助學習者讀懂例句。不必解釋主詞本身（即詞條的 `japanese`），重點放在其他動詞、名詞、文法結構。
 3. Antigravity 將會產生一份暫存的 JSON 或是直接提出預覽供開發者檢查。
 
 ### 階段四：資料整併與更新 (Data Merge & Sync)

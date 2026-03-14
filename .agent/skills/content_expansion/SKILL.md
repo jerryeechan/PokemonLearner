@@ -21,7 +21,7 @@ When the user requests to "expand content", "generate new vocabulary", "run the 
 
 4. **Generate the Review JSON**
    Generate a JSON artifact named `batch_XX_review.json` (where XX is the batch number).
-   Ensure the JSON strictly follows the `VocabEntry` interface format (requires id, category, japanese, hiragana, romaji, zh_tw, difficulty, frequency, explanation, etymology, example_sentence, example_sentence_zh).
+   Ensure the JSON strictly follows the `VocabEntry` interface format (requires id, category, japanese, hiragana, romaji, zh_tw, difficulty, frequency, explanation, etymology, example_sentence, example_sentence_zh,example_sentence_explanation).
    Leave ID as empty string `""` or `"AUTO"` to let the merge script handle the sequential numbering.
    Ask the user to review this JSON artifact before proceeding.
 
