@@ -1,16 +1,9 @@
-import { useState } from 'react';
 import { Volume2 } from 'lucide-react';
+import { useState } from 'react';
+import type { VocabContent } from '../../types/vocab';
 
 interface FlashcardProps {
-  vocab: {
-    japanese: string;
-    hiragana: string;
-    zh_tw: string;
-    explanation: string;
-    etymology?: string;
-    example_sentence?: string;
-    example_sentence_zh?: string;
-  };
+  vocab: VocabContent;
   onNext: (correct: boolean) => void;
 }
 
@@ -120,14 +113,17 @@ export function FlashcardMode({ vocab, onNext }: FlashcardProps) {
                     <Volume2 className="w-4 h-4" />
                   </button>
                 </div>
+                {vocab.example_sentence_zh && (
+                  <p className="text-xs italic opacity-70 mt-2 leading-relaxed">
+                    <span className="font-black not-italic">🇹🇼 翻譯：</span>{vocab.example_sentence_zh}
+                  </p>
+                )}
+                {vocab.example_sentence_explanation && (
+                  <p className="text-xs opacity-80 mt-2 leading-relaxed">
+                    <span className="font-black">📘 解析：</span>{vocab.example_sentence_explanation}
+                  </p>
+                )}
               </div>
-            )}
-
-            {/* Chinese translation */}
-            {vocab.example_sentence_zh && (
-              <p className="text-xs italic opacity-70 flex-shrink-0 leading-relaxed">
-                <span className="font-black not-italic">🇹🇼 翻譯：</span>{vocab.example_sentence_zh}
-              </p>
             )}
           </div>
         </div>

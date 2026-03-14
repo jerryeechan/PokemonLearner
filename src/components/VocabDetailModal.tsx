@@ -1,15 +1,8 @@
 import { Volume2, X } from 'lucide-react';
+import type { VocabContent } from '../types/vocab';
 
-interface VocabItem {
+interface VocabItem extends VocabContent {
   id: string;
-  japanese: string;
-  hiragana: string;
-  zh_tw: string;
-  explanation: string;
-  etymology?: string | null;
-  example_sentence?: string | null;
-  example_sentence_zh?: string | null;
-  example_sentence_explanation?: string | null;
   category: string;
 }
 
