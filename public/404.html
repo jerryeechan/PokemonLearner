@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA redirect trick
+      // Stores the current path in sessionStorage, then redirects to the root
+      // so index.html can restore the correct route via React Router.
+      var l = window.location;
+      sessionStorage.redirect = l.pathname + l.search + l.hash;
+      l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/PokemonLearner/');
+    </script>
+  </head>
+  <body></body>
+</html>
