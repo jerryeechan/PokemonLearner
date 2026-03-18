@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Pokemon Phrase Sensei
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+用寶可夢學日文。跟著火紅／葉綠的冒險旅程，在真實對話場景中學習日文單字與短語。
 
-Currently, two official plugins are available:
+🔗 **[立即體驗](https://jerryeechan.github.io/PokemonLearner/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 特色
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **6 種遊戲模式** — 翻卡、選擇題（中→日 / 日→中）、拼字、配對、填空
+- **間隔重複系統（SRS）** — 依照掌握程度調整出題頻率，Level 0–5 逐步晉升
+- **章節解鎖制** — 跟著《寶可夢火紅》劇情推進，從真新鎮一路走到 Bill 的家
+- **生命值與 XP** — 5 顆愛心、答題累積經驗值、連勝天數追蹤
+- **推播通知** — 提醒每日複習，不中斷學習節奏
+- **單字詳情** — 每個詞條附漢字、平假名、羅馬拼音、說明、語源、例句與翻譯
 
-## Expanding the ESLint configuration
+## 詞彙內容
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| 項目 | 數量 |
+|------|------|
+| 詞條總數 | 375 |
+| 章節 | 7（共規劃 27 章） |
+| 分類 | Pokemon、對話、招式、道具、地點、對戰、屬性、異常狀態、能力、UI |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 目前章節
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| 章節 | 標題 | 場景 |
+|------|------|------|
+| 1 | 冒險的起點 | 真新鎮・大木研究所・初始寶可夢 |
+| 2 | 草叢的危機 | 常磐市・基礎對戰・道具 |
+| 3 | 常磐森林的考驗 | 蟲系寶可夢・異常狀態 |
+| 4 | 岩石防禦 | 尼比市道館・小剛 |
+| 5 | 神秘的月見山 | 月見山・火箭隊・進化 |
+| 6 | 華藍市的試煉 | 水系道館・小霞 |
+| 7 | 正輝的家與金珠橋 | 24/25 號道路・Bill's House |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **Frontend** — React 19 + TypeScript + Vite
+- **Styling** — Tailwind CSS
+- **State** — Zustand
+- **Routing** — React Router v7
+- **Deploy** — GitHub Pages
+
+## 本地開發
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 內容校稿
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+發現詞彙錯誤？歡迎[開 Issue](https://github.com/jerryeechan/PokemonLearner/issues/new) 回報，請說明：
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 詞彙名稱或 ID（可在單字詳情頁找到）
+- 哪個欄位有誤
+- 正確的內容（附來源更佳）
+
+## 資料來源
+
+詞彙內容由 AI 輔助生成並人工校稿，參考資料包括：
+- [ポケモンWiki](https://wiki.xn--rckteqa2e.com/)
+- 日本任天堂官方《寶可夢火紅》遊戲文本
