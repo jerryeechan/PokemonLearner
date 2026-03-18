@@ -15,9 +15,10 @@ interface ProgressState {
   hearts: number;
   maxHearts: number;
   lastPlayedDate: string; // YYYY-MM-DD
+  lastSessionDate: string; // YYYY-MM-DD, updated only on game session complete
   vocabProgress: Record<string, VocabProgress>;
   unlockedChapters: number[];
-  
+
   // Actions
   addXp: (amount: number) => void;
   loseHeart: () => void;
@@ -26,6 +27,7 @@ interface ProgressState {
   updateVocabReview: (id: string, correct: boolean) => void;
   markFlashcardSeen: (id: string) => void;
   unlockChapter: (chapterId: number) => void;
+  markSessionComplete: () => void;
 }
 
 const getTodayDateString = () => {
@@ -40,6 +42,7 @@ export const useProgressStore = create<ProgressState>()(
       hearts: 5,
       maxHearts: 5,
       lastPlayedDate: '',
+      lastSessionDate: '',
       vocabProgress: {},
       unlockedChapters: [1], // Start with chapter 1 unlocked
 
@@ -132,10 +135,12 @@ export const useProgressStore = create<ProgressState>()(
       }),
 
       unlockChapter: (chapterId) => set((state) => ({
-        unlockedChapters: state.unlockedChapters.includes(chapterId) 
-          ? state.unlockedChapters 
+        unlockedChapters: state.unlockedChapters.includes(chapterId)
+          ? state.unlockedChapters
           : [...state.unlockedChapters, chapterId]
-      }))
+      })),
+
+      markSessionComplete: () => set({ lastSessionDate: getTodayDateString() })
     }),
     {
       name: 'pokemon-learner-storage', // unique name

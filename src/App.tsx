@@ -1,10 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
-import { Layout } from './components/layout/Layout';
-import { Home } from './pages/Home';
-import { Review } from './pages/Review';
-import { Profile } from './pages/Profile';
-import { Game } from './pages/Game';
 import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './components/layout/Layout';
+import { Game } from './pages/Game';
+import { Home } from './pages/Home';
+import { Profile } from './pages/Profile';
+import { Review } from './pages/Review';
+import { initNotifications } from './services/notificationScheduler';
 import { useProgressStore } from './stores/progressStore';
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   useEffect(() => {
     // Update streak logic on app launch
     updateStreak();
+    // Initialize notification scheduling
+    initNotifications();
   }, [updateStreak]);
 
   return (

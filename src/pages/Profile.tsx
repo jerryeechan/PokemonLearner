@@ -1,7 +1,12 @@
+import { useSearchParams } from 'react-router-dom';
+import { NotificationDebugPanel } from '../components/notifications/NotificationDebugPanel';
+import { NotificationSettings } from '../components/notifications/NotificationSettings';
 import { useProgressStore } from '../stores/progressStore';
 
 export function Profile() {
   const { xp, streak } = useProgressStore();
+  const [searchParams] = useSearchParams();
+  const isDebug = searchParams.has('debug');
 
   return (
     <div className="w-full">
@@ -42,6 +47,9 @@ export function Profile() {
           </div>
         ))}
       </div>
+
+      <NotificationSettings />
+      {isDebug && <NotificationDebugPanel />}
     </div>
   );
 }
