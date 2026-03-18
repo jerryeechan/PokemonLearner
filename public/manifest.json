@@ -1,0 +1,15 @@
+{
+  "name": "PokemonLearner - 寶可夢日語學習",
+  "short_name": "PokemonLearner",
+  "start_url": "/PokemonLearner/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#4dad5b",
+  "icons": [
+    {
+      "src": "/PokemonLearner/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

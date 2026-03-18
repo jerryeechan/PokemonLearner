@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { X } from 'lucide-react';
-import vocabData from '../data/pokemon_vocab.json';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ClozeMode } from '../components/game/ClozeMode';
 import { FlashcardMode } from '../components/game/FlashcardMode';
+import { MatchMode } from '../components/game/MatchMode';
+import { QuizJaToZhMode } from '../components/game/QuizJaToZhMode';
 import { QuizMode } from '../components/game/QuizMode';
 import { SpellingMode } from '../components/game/SpellingMode';
-import { MatchMode } from '../components/game/MatchMode';
-import { ClozeMode } from '../components/game/ClozeMode';
-import { QuizJaToZhMode } from '../components/game/QuizJaToZhMode';
+import { NotificationOptIn } from '../components/notifications/NotificationOptIn';
 import { chapters } from '../data/chapters';
+import vocabData from '../data/pokemon_vocab.json';
 import { useProgressStore } from '../stores/progressStore';
 
 // Define a type for the Game Question
@@ -24,7 +25,7 @@ interface GameSessionItem {
 export function Game() {
   const { chapterId } = useParams();
   const navigate = useNavigate();
-  const { addXp, updateVocabReview, loseHeart, hearts, markFlashcardSeen } = useProgressStore();
+  const { addXp, updateVocabReview, loseHeart, hearts, markFlashcardSeen, markSessionComplete } = useProgressStore();
   
   const [sessionQueue, setSessionQueue] = useState<GameSessionItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -185,7 +186,8 @@ export function Game() {
 
     if (currentIndex + 1 >= sessionQueue.length) {
       setIsGameOver(true);
-      
+      markSessionComplete();
+
       // Auto-unlock next chapter based on progress or XP fallback
       const currentChapterId = Number(chapterId);
       const chapter = chapters.find(c => c.id === currentChapterId);
@@ -226,12 +228,13 @@ export function Game() {
             <p>獲得 +{sessionStats.xpEarned} XP</p>
           </div>
         </div>
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="btn-primary w-full py-4 text-xl shadow-[0_6px_0_0_rgba(34,197,94,1)]"
         >
           繼續
         </button>
+        <NotificationOptIn />
       </div>
     );
   }
